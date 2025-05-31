@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.massive.boardserver.mapper.UserProfileMapper">
+
+    <select id="getUserProfile" resultType="com.massive.boardserver.dto.UserDTO">
+        SELECT id, userId, password, nickName, createTime, isWithDraw, status
+        FROM user
+        WHERE userId = #{id}
+    </select>
+
+    <insert id="insertUserProfile">
+        INSERT INTO user (userId, password, nickName, phone, address, isWithDraw, status)
+        VALUES (#{id}, #{password}, #{name}, #{phone}, #{address}, 0, 'ACTIVE')
+    </insert>
+
+    <update id="updateUserProfile">
+        UPDATE user
+        SET password=#{password},
+            nickName=#{name},
+            phone=#{phone},
+            address=#{address}
+        WHERE userId = #{id}
+    </update>
+
+    <delete id="deleteUserProfile">
+        DELETE
+        FROM user
+        WHERE userId = #{id}
+    </delete>
+
+    <insert id="register" parameterType="com.massive.boardserver.dto.UserDTO">
+        INSERT INTO user (userId, password, nickName, createTime, isWithDraw, status)
+        VALUES (#{userId}, #{password}, #{nickName}, #{createTime}, #{isWithDraw}, #{status})
+    </insert>
+
+    <select id="findByIdAndPassword" resultType="com.massive.boardserver.dto.UserDTO">
+        SELECT id,
+               userId,
+               password,
+               nickName,
+               createTime,
+               isWithDraw,
+               status
+        FROM user
+        WHERE userId = #{id}
+          AND password = #{password}
+          AND status != 'DELETE'
+    </select>
+
+    <select id="idCheck" resultType="int">
+        SELECT COUNT(id)
+        FROM user
+        WHERE userId = #{id}
+    </select>
+
+    <update id="updatePassword" parameterType="com.massive.boardserver.dto.UserDTO">
+        UPDATE user
+        SET password = #{password}
+        WHERE userId = #{userId}
+    </update>
+
+    <update id="updateAddress" parameterType="com.massive.boardserver.dto.UserDTO">
+        UPDATE user
+        SET address = #{address}
+        WHERE userId = #{userId}
+    </update>
+</mapper>
