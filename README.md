@@ -1,8 +1,17 @@
 # MassiveTrafficCRUD
 대규모 트래픽을 고려한 실무 게시판 프로젝트
 
+## 📌사용기술 
+JAVA 17, Spring Boot 2.3, MyBatis, MySQL, Redis
+
+
+## 📣성능테스트 툴
+Python 3.9, Locust
+성능테스트 툴
+
 ## 🏆 프로젝트 목적
 🖋️대용량 트랙을 고려한 어플 개발 (초당 1000 tps 이상의 게시글 검색 API)
+
 
 ## 🛠️기능 설명
 
