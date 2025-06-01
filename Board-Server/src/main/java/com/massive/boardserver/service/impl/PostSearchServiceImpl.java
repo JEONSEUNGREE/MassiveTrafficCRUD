@@ -24,8 +24,7 @@ public class PostSearchServiceImpl implements PostSearchService {
 	@Async
 	@Cacheable(
 		value = "getProducts",
-		key = "'getProducts' + #postSearchRequest.getName() + #postSearchRequest.getCategoryId()",
-		unless = "#result == null || #result.isEmpty()")
+		key = "'getProducts' + #postSearchRequest.getName() + #postSearchRequest.getCategoryId()")
 	@Override
 	public List<PostDTO> getProducts(PostSearchRequest postSearchRequest) {
 		List<PostDTO> postDTOList = null;
